@@ -134,3 +134,12 @@ resource "aws_route" "default-vpc" {
   destination_cidr_block    = var.vpc_cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
+
+  #testing purpose
+  resource "aws_instance" "test"  {
+    ami = "ami-0b4f379183e5706b9"
+    instance_type = "t3.micro"
+    tags = {
+      Name = "test"
+    }
+  }
