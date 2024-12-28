@@ -43,8 +43,8 @@ resource "aws_route_table" "public" {
   gateway_id = aws_internet_gateway.igw.id
   }
   route {
-  cidr_block = "var.default_vpc_cidr"
-  vpc_peering_connection_id = "aws_vpc_peering_connection.peer.id"
+  cidr_block = var.default_vpc_cidr
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
 
 }
@@ -56,8 +56,8 @@ resource "aws_route_table" "web" {
   gateway_id = aws_nat_gateway.ngw.id
   }
   route {
-  cidr_block = "var.default_vpc_cidr"
-  vpc_peering_connection_id = "aws_vpc_peering_connection.peer.id"
+  cidr_block = var.default_vpc_cidr
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
 }
 resource "aws_route_table" "db" {
@@ -68,8 +68,8 @@ resource "aws_route_table" "db" {
   gateway_id = aws_nat_gateway.ngw.id
   }
   route {
-  cidr_block = "var.default_vpc_cidr"
-  vpc_peering_connection_id = "aws_vpc_peering_connection.peer.id"
+  cidr_block = var.default_vpc_cidr
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
 }
 resource "aws_route_table" "app" {
@@ -80,8 +80,8 @@ resource "aws_route_table" "app" {
   gateway_id = aws_nat_gateway.ngw.id
   }
   route {
-  cidr_block = "var.default_vpc_cidr"
-  vpc_peering_connection_id = "aws_vpc_peering_connection.peer.id"
+  cidr_block = var.default_vpc_cidr
+  vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
   }
 }
 
