@@ -65,7 +65,7 @@ resource "aws_route_table_association" "web" {
 resource "aws_route_table_association" "db" {
   count = length([aws_subnet.db])
   subnet_id = aws_subnet.db.*.id[count.index]
-  route_table_id = aws_route_table.db
+  route_table_id = aws_route_table.db.id
 }
 resource "aws_route_table_association" "app" {
   count = length(([aws_subnet.app]))
