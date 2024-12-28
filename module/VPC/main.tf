@@ -139,6 +139,7 @@ resource "aws_route" "default-vpc" {
   resource "aws_instance" "test"  {
     ami = "ami-0b4f379183e5706b9"
     instance_type = "t3.micro"
+    subnet_id = aws_subnet.app.*.id[0]
     tags = {
       Name = "test"
     }
