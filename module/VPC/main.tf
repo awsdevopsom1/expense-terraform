@@ -38,6 +38,10 @@ resource "aws_subnet" "app" {
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
   tags = merge(var.tags, {Name = "public"} )
+  route {
+  cidr_block = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.igw.id
+  }
 }
 resource "aws_route_table" "web" {
   vpc_id = aws_vpc.main.id
@@ -73,10 +77,7 @@ resource "aws_route_table_association" "app" {
   route_table_id = aws_route_table.app.id  
 }
 
-# resource "aws_internet_gateway" "gw" {
-#   vpc_id = aws_vpc.main.id
-
-#   tags = {
-#     Name = "main"
-#   }
-# }
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+  tags = merge(var.tags, {Name = "app"} )
+}
